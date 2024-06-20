@@ -1,0 +1,8 @@
+.login-background {
+    background: #ECF8E5; /* Your desired background color */
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    border-radius: 0 0 40% 40%; /* Creates the upward curve */
+}
+

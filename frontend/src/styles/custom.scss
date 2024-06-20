@@ -1,0 +1,37 @@
+
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+// Override Bootstrap variables before importing the rest of Bootstrap
+$primary: #5EC57E;
+$secondary: #ECF8E5;
+$success: #5EC57E;
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark
+);
+
+h1, h2, h3, h4, h5, h6 {
+    color: #347571;
+}
+
+p {
+    color: #347571;
+    font-weight: 300;
+}
+
+.display-4 {
+    color: #347571;
+    
+}
+
+// Import Bootstrap
+@import 'bootstrap/scss/bootstrap';
