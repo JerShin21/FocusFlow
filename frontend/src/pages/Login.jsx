@@ -10,7 +10,17 @@ function Login() {
     const [password, setPassword] = useState('')
     const [validated, setValidated] = useState(false)
     const [loginError, setLoginError] = useState('');
+    const [isMobile, setIsMobile] = useState(false)
     const navigate = useNavigate()
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768)
+        }
+        handleResize()
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -46,14 +56,14 @@ function Login() {
   return (
     <div className="login-background">
         <div className='container'>
-            <div className="row align-items-center vh-100">
-                <div className="col-md-5 me-5 text-center text-md-start">
+            <div className={`row align-items-center ${isMobile ? "" : "vh-100"}`}>
+                <div className={`col-md-5 ${isMobile ? "mt-4" : "me-5"} text-center text-md-start`}>
                     <h1 className="display-4">Sign In to</h1>
                     <h1 className="display-4">Manage Awesome</h1>
                     <h1 className="display-4">Stuff</h1>
                     <p className="mt-4">Don't have an account? <a className='text-decoration-none' href="/register">sign up here</a>.</p>
                 </div>
-                <div className="col-md-5 ms-5">
+                <div className={`col-md-5 ${isMobile ? "mt-4" : "ms-5"}`}>
                     <form noValidate className={validated ? 'was-validated' : ''} onSubmit={handleSubmit}>
                         {loginError && <div className="alert alert-danger" role="alert">{loginError}</div>}
                         <div className="form-floating mb-3">

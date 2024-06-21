@@ -1,0 +1,10 @@
+.logo {
+    height: 2rem;
+    width: auto;  
+    border-radius: 10%;
+}
+
+.navbar-nav .dropdown-menu {
+    right: 0;
+    left: auto;
+  }

@@ -13,7 +13,17 @@ function Register() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [passwordMatch, setPasswordMatch] = useState(true);
     const [validated, setValidated] = useState(false);
+    const [isMobile, setIsMobile] = useState(false)
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768)
+        }
+        handleResize()
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -58,14 +68,14 @@ function Register() {
     <div className="login-background">
 
         <div className='container'>
-            <div className="row align-items-center vh-100">
-                <div className="col-md-5 me-5 text-center text-md-start">
+            <div className={`row align-items-center ${isMobile ? "" : "vh-100"}`}>
+                <div className={`col-md-5 ${isMobile ? "mt-4" : "me-5"} text-center text-md-start`}>
                     <h1 className="display-4">Sign Up to</h1>
                     <h1 className="display-4">Manage Awesome</h1>
                     <h1 className="display-4">Stuff</h1>
                     <p className="mt-4">if you already have an account, <a className='text-decoration-none' href="/login">log in here</a>.</p>
                 </div>
-                <div className="col-md-5 ms-5">
+                <div className={`col-md-5 ${isMobile ? "" : "ms-5"}`}>
                     <form noValidate className={validated ? 'was-validated' : ''} onSubmit={handleSubmit}>
                         <div className="form-floating mb-3">
                             <input

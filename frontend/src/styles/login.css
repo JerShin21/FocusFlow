@@ -6,3 +6,54 @@
     border-radius: 0 0 40% 40%; /* Creates the upward curve */
 }
 
+@media (max-width: 768px) {
+    .login-background {
+        
+        border-radius: 0;
+        padding: 20px;
+    }
+
+    /* .container {
+        padding: 0;
+    }
+
+    .row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .col-md-5 {
+        max-width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .text-md-start {
+        text-align: center !important;
+    }
+
+    .me-5, .ms-5 {
+        margin: 0 !important;
+    }
+
+    .display-4 {
+        font-size: 2rem;
+    }
+
+    .mt-4 {
+        margin-top: 1.5rem !important;
+    }
+
+    .form-floating {
+        margin-bottom: 15px;
+    }
+
+    .d-grid {
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn {
+        width: 100%;
+    } */
+}
+
