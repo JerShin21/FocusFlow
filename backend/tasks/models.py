@@ -21,10 +21,11 @@ class Task(models.Model):
     due_date = models.DateField(null=True, blank=True)
     priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default='Medium')
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Pending')
-    project_id = models.ForeignKey(Project, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='tasks', null=True, blank=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
+    last_accessed = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return self.title

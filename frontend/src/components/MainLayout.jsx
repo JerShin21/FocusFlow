@@ -1,21 +1,25 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Navbar, Nav, NavDropdown, Button, Breadcrumb, Row, Col, Container } from 'react-bootstrap';
 import logo from '../assets/logo.png';
 import '../styles/MainLayout.css';
 import PropTypes from 'prop-types';
-import { PiNotePencil, PiFolderPlus, PiUser, PiSidebar, PiHouse, PiTarget, PiBell, PiUserList, PiFolders, PiSquaresFour, PiFolder } from 'react-icons/pi';
+import { PiNotePencil, PiFolderPlus, PiUser, PiSidebar, PiHouse, PiTarget, PiBell, PiUserList, PiFolders, PiCheckSquareOffset, PiSquaresFour, PiFolder } from 'react-icons/pi';
 import { TbLogout2 } from "react-icons/tb";
+import api from '../api';
 
 function MainLayout({ children, breadcrumbs }) {
     const [collapsed, setCollapsed] = useState(true);
+    const [projects, setProjects] = useState([]);
+
+    const getProjects = () => {
+        api.get('/api/projects/').then((res) => res.data).then((data) => {setProjects(data); console.log("Projects:" +data)}).catch((err) => console.log(err))
+    }
+
+    useEffect(() => {
+        getProjects()
+    },[])
 
     const toggleSidebar = () => setCollapsed(!collapsed);
-
-    const projectsDevs = [
-        { name: 'Project 1' },
-        { name: 'Project 2'},
-        { name: 'Project 3' },
-    ]
 
     return (
         <div className="main-layout">
@@ -83,6 +87,10 @@ function MainLayout({ children, breadcrumbs }) {
                         <PiTarget size={24} />
                         {!collapsed && <span>Tasks</span>}
                     </Nav.Link>
+                    <Nav.Link href="/completed-tasks">
+                        <PiCheckSquareOffset size={24} />
+                        {!collapsed && <span>Completed Tasks</span>}
+                    </Nav.Link>
                 </Nav>
                 <hr className='divider'/>
                 <Nav className="flex-column justify-content-center">
@@ -93,8 +101,8 @@ function MainLayout({ children, breadcrumbs }) {
                     ) : (
                         <>
                             <h6>Projects</h6>
-                            {projectsDevs.map((project, index) => (
-                                <Nav.Link key={index} href={`/projects/${project.name.toLowerCase().replace(' ', '-')}`}>
+                            {projects.map((project, index) => (
+                                <Nav.Link key={index} href={`/projects/${project.id}`}>
                                     <PiFolder size={24} />
                                     <span>{project.name}</span>
                                 </Nav.Link>

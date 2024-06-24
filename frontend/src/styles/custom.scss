@@ -148,6 +148,53 @@ p {
         padding: 20px;
         margin: 0;
     }
+
+    .card {
+        border-radius: 10px;
+        &:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .nav-tabs {
+        .nav-item {
+            .nav-link {
+                color: #347571;
+                &:hover {
+                    color: $primary;
+                }
+                &.active {
+                    color: $primary;
+                }
+            }
+        }
+    }
+
+    .task-check-before {
+        &:hover {
+            cursor: pointer;
+        }
+        &:active {
+            color: $success;
+        }
+
+    }
+
+    .task-check-after {
+        color: $success;
+        &:hover {
+            cursor: pointer;
+        }
+        &:active {
+            color: black;
+        }
+    }
+
+    .progress {
+        .progress-bar {
+            background-color: $success;
+        }
+    }
 }
 
 @media (max-width: 768px) {

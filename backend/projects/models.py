@@ -9,7 +9,17 @@ class Project(models.Model):
     description = models.TextField(blank=True, null=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
+    last_accessed = models.DateTimeField(null=True, blank=True)
+
+    def calculate_progress(self):
+        total_tasks = self.tasks.count()
+        completed_tasks = self.tasks.filter(status='Completed').count()
+        if total_tasks > 0:
+            progress = (completed_tasks / total_tasks) * 100
+        else:
+            progress = 100
+        return progress
 
     def __str__(self):
         return self.name

@@ -38,8 +38,8 @@ function Register() {
 
         try {
             const res = await api.post('/api/user/register/', {
-                firstName,
-                lastName,
+                "first_name":firstName,
+                "last_name":lastName,
                 username,
                 email,
                 password,
