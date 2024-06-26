@@ -2,8 +2,10 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.utils import timezone
 from .models import Project
+from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view
 from .serializers import ProjectSerializer
 
 # Create your views here.
@@ -47,3 +49,9 @@ class RecentProjectsList(generics.ListAPIView):
 
     def get_queryset(self):
         return Project.objects.filter(created_by=self.request.user).order_by('-last_accessed', '-updated_at', '-created_at')[:5]
+    
+@api_view(['GET'])
+def get_project_choices(request):
+    return Response({
+        'project_choices': [{'value': project.id, 'label': project.name} for project in Project.objects.filter(created_by=request.user.id)]
+    })

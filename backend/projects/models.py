@@ -19,7 +19,7 @@ class Project(models.Model):
             progress = (completed_tasks / total_tasks) * 100
         else:
             progress = 100
-        return progress
+        return round(progress, 2)
 
     def __str__(self):
         return self.name

@@ -195,6 +195,37 @@ p {
             background-color: $success;
         }
     }
+
+    .recent {
+        text-decoration: none;
+        color: #347571;
+
+        &:hover {
+            text-decoration: none;
+            color: $primary;
+        }
+    }
+
+    .pending-project {
+        color: #347571;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: none;
+            color: $primary;
+        }
+    }
+
+    .pending-task {
+        color: black;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: none;
+            color: $primary;
+        }
+    
+    }
 }
 
 @media (max-width: 768px) {

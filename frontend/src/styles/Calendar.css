@@ -73,29 +73,47 @@
 
 .calendar-day {
   flex: 1 0 14%; /* Adjusts the size based on the container width */
-  height: 75px;
+  height: 80px; /* Adjust the height to fit your design */
   position: relative;
   border: 1px solid #a6a6a6;
   box-sizing: border-box;
+  padding: 10px;
+  overflow: hidden; /* Ensure content within the calendar day does not overflow */
 }
 
 .calendar-day:hover {
   background-color: rgba(0, 0, 0, .10);
 }
 
-.calendar-day p {
+.calendar-day .calendar-day-number {
   position: absolute;
+  top: 5px;
   right: 10px;
+}
+
+.calendar-day .calendar-day-number p {
   color: #a6a6a6;
 }
 
-.current p {
+.calendar-day.current .calendar-day-number p {
   color: #000000;
 }
 
-.selected p {
+.calendar-day.selected .calendar-day-number p {
   color: #cc0000;
   font-weight: bold;
+}
+
+.tasks {
+  margin-top: 25px; /* Adjust to make space for the calendar day number */
+  max-height: 45px; /* Set a maximum height for the tasks container */
+  overflow-y: auto; /* Enable vertical scrolling */
+  text-align: left;
+}
+
+.task {
+  margin-top: 5px;
+  color: #000000;
 }
 
 /* Media Queries for responsiveness */

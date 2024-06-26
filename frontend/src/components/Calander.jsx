@@ -3,7 +3,7 @@ import CalenderDays from './CalenderDays';
 import '../styles/Calendar.css';
 import { PiArrowLeft, PiArrowRight } from "react-icons/pi";
 
-const Calendar = () => {
+const Calendar = ({tasks}) => {
   const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const months = ['January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'];
@@ -46,7 +46,7 @@ const Calendar = () => {
             <div className="weekday" key={weekday}><p>{weekday}</p></div>
           ))}
         </div>
-        <CalenderDays day={currentDay} changeCurrentDay={changeCurrentDay} />
+        <CalenderDays day={currentDay} changeCurrentDay={changeCurrentDay} tasks={tasks} />
       </div>
     </div>
   );

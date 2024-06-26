@@ -8,6 +8,8 @@ import Index from './pages/Index'
 import Login from './pages/Login'
 import NotFound from './pages/NotFound'
 import Register from './pages/Register'
+import CreateTask from './pages/CreateTask'
+import CreateProject from './pages/CreateProject'
 
 function Logout() {
   localStorage.clear()
@@ -25,14 +27,9 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}/>
+          <Route path='/dashboard/create-task' element={<ProtectedRoute><CreateTask /></ProtectedRoute>} />
+          <Route path='/dashboard/create-project' element={<ProtectedRoute><CreateProject /></ProtectedRoute>} />
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />

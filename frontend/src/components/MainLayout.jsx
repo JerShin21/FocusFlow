@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown, Button, Breadcrumb, Row, Col, Container } from 'react-bootstrap';
 import logo from '../assets/logo.png';
 import '../styles/MainLayout.css';
@@ -10,6 +11,7 @@ import api from '../api';
 function MainLayout({ children, breadcrumbs }) {
     const [collapsed, setCollapsed] = useState(true);
     const [projects, setProjects] = useState([]);
+    const navigate = useNavigate();
 
     const getProjects = () => {
         api.get('/api/projects/').then((res) => res.data).then((data) => {setProjects(data); console.log("Projects:" +data)}).catch((err) => console.log(err))
@@ -20,6 +22,10 @@ function MainLayout({ children, breadcrumbs }) {
     },[])
 
     const toggleSidebar = () => setCollapsed(!collapsed);
+
+    const handleNavigate = (path) => {
+        navigate(path);
+    }
 
     return (
         <div className="main-layout">
@@ -36,8 +42,8 @@ function MainLayout({ children, breadcrumbs }) {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
-                        <Button className="me-2 btn btn-secondary"><PiNotePencil size={24} /></Button>
-                        <Button className="me-2 btn btn-secondary"><PiFolderPlus size={24} /></Button>
+                        <Button onClick={() => handleNavigate("/dashboard/create-task")} className="me-2 btn btn-secondary"><PiNotePencil size={24} /></Button>
+                        <Button onClick={() => handleNavigate("/dashboard/create-project")} className="me-2 btn btn-secondary"><PiFolderPlus size={24} /></Button>
                         <NavDropdown title={<PiUser size={24} />} id="basic-nav-dropdown" align="end">
                             <NavDropdown.Item className='custom-dropdown-item' href="#action/3.1"><PiUserList size={24} className='icon'/>Profile</NavDropdown.Item>
                             <NavDropdown.Divider />
@@ -71,7 +77,7 @@ function MainLayout({ children, breadcrumbs }) {
         <Row>
             <Col xs="auto" className={`sidebar ${collapsed ? 'collapsed' : 'expanded'}`}>
                 <Nav className="flex-column justify-content-center">
-                    <Nav.Link href="/dashboard">
+                    <Nav.Link onClick={() => handleNavigate("/dashboard")}>
                         <PiHouse size={24} />
                         {!collapsed && <span>Dashboard</span>}
                     </Nav.Link>

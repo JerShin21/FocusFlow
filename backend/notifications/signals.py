@@ -19,10 +19,19 @@ def project_deleted(sender, instance, **kwargs):
 @receiver(post_save, sender=Task)
 def task_created(sender, instance, created, **kwargs):
     if created:
-        Notification.objects.create(user=instance.project.created_by, message=f"Task {instance.title} created")
+        if instance.project:
+            Notification.objects.create(user=instance.project.created_by, message=f"Task {instance.title} created")
+        else:
+            Notification.objects.create(user=instance.created_by, message=f"Task {instance.title} created")
     else:
-        Notification.objects.create(user=instance.project.created_by, message=f"Task {instance.title} updated")
+        if instance.project:
+            Notification.objects.create(user=instance.project.created_by, message=f"Task {instance.title} updated")
+        else:
+            Notification.objects.create(user=instance.created_by, message=f"Task {instance.title} updated")
 
 @receiver(post_delete, sender=Task)
 def task_deleted(sender, instance, **kwargs):
-    Notification.objects.create(user=instance.project.created_by, message=f"Task {instance.title} deleted")
+    if instance.project:
+        Notification.objects.create(user=instance.project.created_by, message=f"Task {instance.title} deleted")
+    else:
+        Notification.objects.create(user=instance.created_by, message=f"Task {instance.title} deleted")
