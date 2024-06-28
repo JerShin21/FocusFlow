@@ -8,11 +8,16 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import TaskSerializer
 from rest_framework import status
+from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
 
 # Create your views here.
+class NoPagination(PageNumberPagination):
+    page_size = None
+
 class TaskListCreate(generics.ListCreateAPIView):
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
+    pagination_class = NoPagination
 
     def get_queryset(self):
         return Task.objects.filter(created_by=self.request.user)
@@ -53,6 +58,7 @@ class TaskRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 class RecentTasksList(generics.ListAPIView):
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
+    pagination_class = NoPagination
 
     def get_queryset(self):
         return Task.objects.filter(created_by=self.request.user).order_by('-last_accessed','-updated_at', '-created_at')[:5]

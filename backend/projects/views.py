@@ -1,17 +1,19 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.utils import timezone
-from .models import Project
 from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view
+from .models import Project
 from .serializers import ProjectSerializer
+from tasks.views import NoPagination 
 
 # Create your views here.
 class ProjectListCreate(generics.ListCreateAPIView):
     serializer_class = ProjectSerializer
     permission_classes = [IsAuthenticated]
+    pagination_class = NoPagination  # Disable pagination for this view
 
     def get_queryset(self):
         return Project.objects.filter(created_by=self.request.user.id)
@@ -46,6 +48,7 @@ class ProjectRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 class RecentProjectsList(generics.ListAPIView):
     serializer_class = ProjectSerializer
     permission_classes = [IsAuthenticated]
+    pagination_class = NoPagination  # Disable pagination for this view
 
     def get_queryset(self):
         return Project.objects.filter(created_by=self.request.user).order_by('-last_accessed', '-updated_at', '-created_at')[:5]
