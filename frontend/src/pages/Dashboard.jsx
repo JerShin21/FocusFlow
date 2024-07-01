@@ -114,7 +114,7 @@ function Dashboard() {
             {recentProjects && recentProjects.length > 0 ? (
               recentProjects.map((project) => (
                 <ul key={project.id}>
-                  <li><h6><Link className='recent' to={`/projects/${project.id}`}>{project.name}</Link></h6></li>
+                  <li><h6><Link className='recent' to={`/project/${project.id}`}>{project.name}</Link></h6></li>
                 </ul>
               ))
             ) : (
@@ -128,7 +128,7 @@ function Dashboard() {
             {recentTasks && recentTasks.length > 0 ? (
               recentTasks.map((task) => (
                 <ul key={task.id}>
-                  <li><Link className='recent' to={`/tasks/${task.id}`}>{task.title}</Link></li>
+                  <li><Link className='recent' to={`/task/${task.id}`}>{task.title}</Link></li>
                 </ul>
               ))
             ) : (
@@ -177,8 +177,8 @@ function Dashboard() {
                     Tasks.filter(task => task.status === 'Pending').map((task) => (
                       <div className="d-flex justify-content-between align-items-center border-bottom py-2" key={task.id}>
                         <div className="d-flex flex-column justify-content-center">
-                          <h6 className="mb-0"><Link className='pending-task' to={`/tasks/${task.id}`}>{task.title}</Link></h6>
-                          <p className="mb-0"><Link className='pending-project' to={`/projects/${task.project.id}`}>{task.project.name}</Link></p>
+                          <h6 className="mb-0"><Link className='pending-task' to={`/task/${task.id}`}>{task.title}</Link></h6>
+                          <p className="mb-0"><Link className='pending-project' to={`/project/${task.project.id}`}>{task.project.name}</Link></p>
                         </div>
                         <div>
                           <PiSquare

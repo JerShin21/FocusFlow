@@ -108,7 +108,7 @@ function MainLayout({ children, breadcrumbs }) {
                         <>
                             <h6>Projects</h6>
                             {projects.map((project, index) => (
-                                <Nav.Link key={index} href={`/projects/${project.id}`}>
+                                <Nav.Link key={index} href={`/project/${project.id}`}>
                                     <PiFolder size={24} />
                                     <span>{project.name}</span>
                                 </Nav.Link>

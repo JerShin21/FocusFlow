@@ -15,6 +15,9 @@ import Test from './pages/Test'
 import ProjectList from './pages/ProjectList'
 import TasksList from './pages/TasksList'
 import CompletedTaskList from './pages/CompletedTaskList'
+import Task from './pages/Task'
+import Project from './pages/Project'
+import EditTask from './pages/EditTask'
 
 function Logout() {
   localStorage.clear()
@@ -39,6 +42,9 @@ function App() {
           <Route path='/projects' element={<ProtectedRoute><ProjectList /></ProtectedRoute>} />
           <Route path='/tasks' element={<ProtectedRoute><TasksList /></ProtectedRoute>} />
           <Route path='/completed-tasks' element={<ProtectedRoute><CompletedTaskList /></ProtectedRoute>} />
+          <Route path='/task/:id' element={<ProtectedRoute><Task /></ProtectedRoute>} />
+          <Route path='/project/:id' element={<ProtectedRoute><Project /></ProtectedRoute>} />
+          <Route path='/task/:id/edit' element={<ProtectedRoute><EditTask /></ProtectedRoute>} />
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />

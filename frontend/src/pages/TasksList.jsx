@@ -60,14 +60,18 @@ function TasksList() {
                                     ))}
                                 </Nav>
                                 <ul className="list-group mt-3">
-                                    {filteredTasks.map(task => (
-                                        <Link to={`/task/${task.id}`} key={task.id} className="list-group-item d-flex justify-content-between align-items-center recent">
-                                            <span>{task.title}</span>
-                                            <span className="badge bg-primary rounded-pill">
-                                                {task.status}
-                                            </span>
-                                        </Link>
-                                    ))}
+                                    {filteredTasks.length > 0 ? (
+                                        filteredTasks.map(task => (
+                                            <Link to={`/task/${task.id}`} key={task.id} className="list-group-item list-group-item-action d-flex justify-content-between align-items-center recent">
+                                                <span>{task.title}</span>
+                                                <span className="badge bg-primary rounded-pill">
+                                                    {task.status}
+                                                </span>
+                                            </Link>
+                                        ))
+                                    ) : (
+                                        <li className="list-group-item">No pending tasks</li>
+                                    )}
                                 </ul>
                             </div>
                         </div>

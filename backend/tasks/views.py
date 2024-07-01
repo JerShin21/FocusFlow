@@ -61,7 +61,7 @@ class RecentTasksList(generics.ListAPIView):
     pagination_class = NoPagination
 
     def get_queryset(self):
-        return Task.objects.filter(created_by=self.request.user).order_by('-last_accessed','-updated_at', '-created_at')[:5]
+        return Task.objects.filter(created_by=self.request.user).order_by('-updated_at', '-created_at')[:5]
     
 @api_view(['GET'])
 def get_task_choices(request):
