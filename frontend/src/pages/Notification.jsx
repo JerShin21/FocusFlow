@@ -46,9 +46,9 @@ function Notification() {
   return (
     <div>
       <MainLayout>
-        <h1>Notifications</h1>
-        <div className="row">
-          <div className="col-6">
+        <h1 className="text-center mt-4">Notifications</h1>
+        <div className="row justify-content-center">
+          <div className="col-12 col-md-8">
             <div className="card">
               <div className="card-header bg-white justify-content-between d-flex align-items-center">
                 <h4 className="card-title mb-0">Unread Notifications</h4>
@@ -63,11 +63,11 @@ function Notification() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-3">
+                <div className="mt-3 text-center">
                   {Array.from({ length: totalPages }, (_, i) => (
                     <button
                       key={i + 1}
-                      className={`btn btn-sm ${currentPage === i + 1 ? 'btn-primary' : 'btn-secondary'}`}
+                      className={`btn btn-sm ${currentPage === i + 1 ? 'btn-primary' : 'btn-secondary'} me-1`}
                       onClick={() => handlePageChange(i + 1)}
                     >
                       {i + 1}

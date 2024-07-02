@@ -150,7 +150,7 @@ function Dashboard() {
           </div>
         </div>
         <div className="row mb-3">
-          <div className="col-6">
+          <div className="col-12 col-md-6 mb-3 mb-md-0">
             <div className="card">
               <div className="card-body">
                 <h4 className="card-title">Recents</h4>
@@ -168,7 +168,7 @@ function Dashboard() {
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-12 col-md-6">
             <div className="card">
               <div className="card-body">
                 <h4 className="card-title">Pending Tasks</h4>
@@ -199,7 +199,7 @@ function Dashboard() {
         </div>
         <div className="row">
           {!isMobile && (
-            <div className="col-6">
+            <div className="col-12 col-md-6 mb-3 mb-md-0">
               <div className="card">
                 <div className="card-body">
                   <h4 className="card-title">Calendar</h4>
@@ -210,7 +210,7 @@ function Dashboard() {
               </div>
             </div>
           )}
-          <div className={`${isMobile ? "col-12" : "col-6"}`}>
+          <div className="col-12 col-md-6">
             <div className="card">
               <div className="card-body">
                 <h4 className="card-title">Progress</h4>

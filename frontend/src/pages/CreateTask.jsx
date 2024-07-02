@@ -62,45 +62,39 @@ function CreateTask() {
     return (
         <div>
             <MainLayout>
-                <h1>Create Task</h1>
+                <h1 className="text-center mt-4">Create Task</h1>
                 <form onSubmit={createTask}>
-                    <div className="row mt-5 mb-3">
-                        <div className="col-3">
+                    <div className="row mt-4 mb-3">
+                        <div className="col-12 col-md-3 mb-3 mb-md-0">
                             <h2>Task Details</h2>
                             <p>Fill in the details of the task</p>
                         </div>
-                        <div className="col-9">
+                        <div className="col-12 col-md-9">
                             <div className="form-container card">
                                 <div className="card-body">
-                                    <div className="row mb-3">
-                                        <div className="col-12">
-                                            <label htmlFor="title" className='form-label'>Title</label>
-                                            <input type='text' className='form-control' id='title' placeholder='Title' required onChange={(e) => setTitle(e.target.value)} value={title} />
-                                        </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="title" className='form-label'>Title</label>
+                                        <input type='text' className='form-control' id='title' placeholder='Title' required onChange={(e) => setTitle(e.target.value)} value={title} />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="description" className='form-label'>Description (Optional)</label>
+                                        <textarea className='form-control' id='description' placeholder='Description' onChange={(e) => setDescription(e.target.value)} value={description} />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="project" className='form-label'>Project</label>
+                                        <select className='form-select' id='project' required onChange={(e) => setSelectedProject(e.target.value)} value={selectedProject}>
+                                            <option value=''>Select Project</option>
+                                            {projects.map((choice) => (
+                                                <option key={choice.value} value={choice.value}>{choice.label}</option>
+                                            ))}
+                                        </select>
                                     </div>
                                     <div className="row mb-3">
-                                        <div className="col-12">
-                                            <label htmlFor="description" className='form-label'>Description (Optional)</label>
-                                            <textarea className='form-control' id='description' placeholder='Description' onChange={(e) => setDescription(e.target.value)} value={description} />
-                                        </div>
-                                    </div>
-                                    <div className="row mb-3">
-                                        <div className="col-12">
-                                            <label htmlFor="project" className='form-label'>Project</label>
-                                            <select className='form-select' id='project' required onChange={(e) => setSelectedProject(e.target.value)} value={selectedProject}>
-                                                <option value=''>Select Project</option>
-                                                {projects.map((choice) => (
-                                                    <option key={choice.value} value={choice.value}>{choice.label}</option>
-                                                ))}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div className="row mb-3">
-                                        <div className="col-6">
+                                        <div className="col-12 col-md-6">
                                             <label htmlFor="due-date" className='form-label'>Due Date</label>
                                             <input type='date' className='form-control' id='due-date' placeholder='Due Date' required onChange={(e) => setDueDate(e.target.value)} value={dueDate} />
                                         </div>
-                                        <div className="col-6">
+                                        <div className="col-12 col-md-6">
                                             <label htmlFor="priority" className='form-label'>Priority</label>
                                             <select className='form-select' id='priority' required onChange={(e) => setPriority(e.target.value)} value={priority}>
                                                 <option value=''>Select Priority</option>

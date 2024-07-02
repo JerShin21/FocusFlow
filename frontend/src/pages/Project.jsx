@@ -1,54 +1,54 @@
-import React from 'react'
-import MainLayout from '../components/MainLayout'
-import { useState, useEffect } from 'react'
-import { useParams, useNavigate, Link } from 'react-router-dom'
-import api from '../api'
+import React from 'react';
+import MainLayout from '../components/MainLayout';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import api from '../api';
 
 function Project() {
-    const { id } = useParams()
-    const [project, setProject] = useState(null)
-    const [tasks, setTasks] = useState([])
-    const navigate = useNavigate()
+    const { id } = useParams();
+    const [project, setProject] = useState(null);
+    const [tasks, setTasks] = useState([]);
+    const navigate = useNavigate();
 
     const getProjectDetails = () => {
         api.get(`/api/projects/${id}/`)
             .then((res) => res.data)
             .then((data) => {
-                setProject(data)
+                setProject(data);
             })
-            .catch((err) => console.log(err))
-    }
+            .catch((err) => console.log(err));
+    };
 
     const getTasks = () => {
         api.get('/api/tasks/')
             .then((res) => res.data)
             .then((data) => {
-                setTasks(data)
+                setTasks(data);
             })
-            .catch((err) => console.log(err))
-    }
+            .catch((err) => console.log(err));
+    };
 
     const deleteProject = () => {
         api.delete(`/api/projects/${id}/`)
             .then(() => {
-                navigate(-1)
+                navigate(-1);
             })
-            .catch((err) => console.log(err))
-    }
+            .catch((err) => console.log(err));
+    };
 
     useEffect(() => {
-        getProjectDetails()
-        getTasks()
-    }, [id])
+        getProjectDetails();
+        getTasks();
+    }, [id]);
 
-    const filteredTasks = tasks.filter(task => task.project.id === parseInt(id))
+    const filteredTasks = tasks.filter(task => task.project.id === parseInt(id));
 
     if (!project) {
         return (
             <MainLayout>
                 <h1>Loading...</h1>
             </MainLayout>
-        )
+        );
     }
 
     return (
@@ -57,12 +57,12 @@ function Project() {
                 <div className="d-flex justify-content-between align-items-center mb-3">
                     <h1>Project: {project.name}</h1>
                     <div>
-                        <button className="btn btn-primary me-2" onClick={() => navigate(`/projects/edit/${project.id}`)}>Edit</button>
+                        <button className="btn btn-primary me-2" onClick={() => navigate(`/project/${project.id}/edit/`)}>Edit</button>
                         <button className="btn btn-danger" onClick={deleteProject}>Delete</button>
                     </div>
                 </div>
                 <div className="row mb-3">
-                    <div className="col-6">
+                    <div className="col-12 col-lg-6 mb-3 mb-lg-0">
                         <div className="card">
                             <div className="card-body">
                                 <div className="row mb-3 mt-3">
@@ -100,7 +100,7 @@ function Project() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-6">
+                    <div className="col-12 col-lg-6">
                         <div className="card">
                             <div className="card-body">
                                 <div className="card-header bg-white">
@@ -116,7 +116,7 @@ function Project() {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-12">
                         <div className="card">
                             <div className="card-body">
                                 <div className="card-header bg-white">
@@ -146,7 +146,7 @@ function Project() {
                 </div>
             </MainLayout>
         </div>
-    )
+    );
 }
 
-export default Project
+export default Project;

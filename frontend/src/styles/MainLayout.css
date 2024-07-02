@@ -8,3 +8,17 @@
     right: 0;
     left: auto;
   }
+
+  .sidebar.collapsed {
+    width: 60px;
+    transition: width 0.3s;
+}
+
+.sidebar.expanded {
+    width: 250px;
+    transition: width 0.3s;
+}
+
+.sidebar.collapsed-mobile {
+    display: none;
+}
