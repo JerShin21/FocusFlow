@@ -45,7 +45,8 @@ function App() {
           <Route path='/task/:id' element={<ProtectedRoute><Task /></ProtectedRoute>} />
           <Route path='/project/:id' element={<ProtectedRoute><Project /></ProtectedRoute>} />
           <Route path='/task/:id/edit' element={<ProtectedRoute><EditTask /></ProtectedRoute>} />
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<Login />} />
+          {/* <Route path="/" element={<Index />} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<RegisterAndLogout />} />

@@ -55,7 +55,7 @@ function CreateProject() {
                 <div className="row p-3 border-top justify-content-end">
                     <div className="col-12 text-end">
                         <button type='button' className='btn btn-secondary me-2' onClick={() => navigate('/dashboard')}>Cancel</button>
-                        <button type='submit' className='btn btn-primary'>Create Task</button>
+                        <button type='submit' className='btn btn-primary'>Create Project</button>
                     </div>
                 </div>
             </form>

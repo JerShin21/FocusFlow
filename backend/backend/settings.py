@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#gr(q44yz%a!sulgsz$9il%^537z&c2c)7am1qloifi(butjdj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -106,10 +106,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "focus-flow",
+        "NAME": "FocusFlow",
         "USER": "postgres",
         "PASSWORD": "123456789",
-        "HOST": "127.0.0.1",
+        "HOST": "focus-flow.cv8m0agquuq4.ap-southeast-1.rds.amazonaws.com",
         "PORT": "5432",
     }
 }
